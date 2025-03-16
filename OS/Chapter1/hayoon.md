@@ -69,10 +69,11 @@
 
 ## 2.3.3.1 프로세스 제어(process control)
 
-- 프로세스 생성/종료, 프로그램 적재/실행
-- 프로세스 속성 조회/설정, 이벤트 대기/알림
-- 메모리 할당/해제까지 프로세스의 전반적인 생명주기와 관리에 관련된 모든 동작을 다룸.
-- fork, exit, wait 등
+◦ create process, terminate process
+◦ load, execute
+◦ get process attributes, set process attributes
+◦ wait event, signal event
+◦ allocate and free memory
 
 실행중인 프로그램은 정상, 혹은 비정상적으로든 실행을 중단할 수 있어야한다. 만약 실행 중인 프로그램이 비정상 종료를 요청하거나 실행 도중 error trap을 일으키게 된다면, **메모리 덤프(memory dump)** 가 기록 되고 오류 메시지가 생기게 된다.
 이 메모리 덤프는 특수 로그 파일에 저장되고, 우리가 아는 **디버거(debugger)** 가 이 오류 및 버그의 원인을 찾고 수정하는데 사용되게 된다.
@@ -92,3 +93,27 @@
 새로운 프로세스를 만들어지면, 그 프로세스가 실행을 마칠때 까지 기다릴 필요가 있다. 또한 둘 이상의 프로세스가 데이터를 공유하는 일이 자주 발생한느데
 이때 공유 데이터의 **무결성**을 보장하기 위해서 프로세스가 공유 데이터를 **lock**할 수 있는 기능을 제공한다. lock이 걸린 데이터는 다른 어떤 프로세스도 접근이 불가능하다.
 
+## 2.3.3.2 파일 관리(File management)
+
+◦ create file, delete file
+◦ open, close
+◦ read, write, reposition
+◦ get file attributes, set file attributes
+
+파일 시스템은 후에 더 다룬다. 파일에 대해서 CRUD가 가능해야하고, 이 파일들에 대한 속성을 설정할 수 있어야한다. 추가로, 다른 프로그램이 이 프로그램을 호출할 수 있다면, API처럼 작동할 수 있다고 이해하면 된다.
+
+
+## 2.3.3.3 Device Management
+
+프로세스가 실행되기 위해서는 여러 **자원(resources)** 이 필요할 수 있다.
+예를 들어, 주기억장치(main memory), 디스크 드라이브(disk drives), 파일 접근(file access) 등이 있다.
+
+만약 필요한 자원이 사용 가능하다면, 운영체제는 이를 할당(grant) 하고
+제어(control) 를 다시 사용자 프로세스에 넘길 수 있다.
+그러나 자원이 충분하지 않다면, 프로세스는 자원이 준비될 때까지 대기(wait) 해야 한다.
+
+운영체제가 제어하는 다양한 자원은 모두 **장치(devices)** 로 볼 수 있다.
+이 장치들 중 일부는 **물리적 장치(physical devices)** (예: 디스크 드라이브)이며,
+다른 일부는 추상적 또는 **가상 장치(abstract or virtual devices)** (예: 파일)로 간주될 수 있다.
+
+이렇게 운영체제에서 요청/할당 된 후에는, 파일처럼 read,write 등의 작업을 수행할 수 있게 된다.
