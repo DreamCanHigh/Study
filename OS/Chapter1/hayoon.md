@@ -63,11 +63,11 @@
 - **SAN (Storage-Area Network)** 통한 스토리지 풀 공유
 
 
-## 2.3.3 시스템 콜의 종류
+# 2.3.3 시스템 콜의 종류
 
 시스템 콜은 총 6가지의 대분류로 나눌 수 있다. **프로세스 제어 (process control), 파일 관리 (file management), 장치 관리 (device management), 정보 유지 (information maintenance), 통신 (communications), 보호 (protection)** 이다.
 
-### 2.3.3.1 프로세스 제어(process control)
+## 2.3.3.1 프로세스 제어(process control)
 
 - 프로세스 생성/종료, 프로그램 적재/실행
 - 프로세스 속성 조회/설정, 이벤트 대기/알림
